@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card">
+    <h2>Step 3 of 4: Work Experience</h2>
+    <p class="small-note">Add any internships, part-time jobs, or relevant work experience. (Optional)</p>
+    <div class="card" style="margin-top: 16px;">
+      <h3>Add Experience</h3>
+      <div class="form-row">
+        <div>
+          <label for="job_title">Job Title</label>
+          <input id="job_title" type="text" placeholder="Software Engineering Intern" />
+        </div>
+        <div>
+          <label for="company_name">Company Name</label>
+          <input id="company_name" type="text" placeholder="Tech Company Inc." />
+        </div>
+        <div>
+          <label for="start_date">Start Date</label>
+          <input id="start_date" type="date" />
+        </div>
+        <div>
+          <label for="end_date">End Date</label>
+          <input id="end_date" type="date" />
+        </div>
+      </div>
+      <div class="form-row single" style="margin-top: 12px;">
+        <label><input id="current_here" type="checkbox" onchange="toggleCurrentHere()" /> Currently Working Here</label>
+        <label for="job_description">Description/Responsibilities</label>
+        <textarea id="job_description" maxlength="500" placeholder="Describe your role..."></textarea>
+        <div class="small-note">Max 500 characters.</div>
+      </div>
+      <button type="button" id="add-experience-button" class="btn" onclick="addExperience()">Add Experience</button>
+      <div class="error-text" id="error-experience"></div>
+    </div>
+    <div class="card">
+      <h3>Experience List</h3>
+      <table class="table">
+        <thead><tr><th>Job Title</th><th>Company</th><th>Duration</th><th>Description</th><th>Action</th></tr></thead>
+        <tbody id="experience-body"></tbody>
+      </table>
+      <div id="experience-count" class="small-note">You have added 0 work experiences.</div>
+    </div>
+    <div class="button-row">
+      <button type="button" class="secondary" onclick="prevPage(3)">Back</button>
+      <button type="button" class="btn" onclick="nextPage(3)">Next</button>
+    </div>
+  </div>
+{% endblock %}

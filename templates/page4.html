@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card">
+    <h2>Step 4 of 4: Skills & Interests</h2>
+    <div class="card" style="margin-top: 16px;">
+      <h3>Technical Skills</h3>
+      <div class="small-note">Select at least one technical skill (max 10).</div>
+      <div class="form-row single">
+        {% for skill in ['Python','Java','JavaScript','C++','SQL','HTML/CSS','React','Node.js','Git','AWS','Docker','Machine Learning'] %}
+          <label><input type="checkbox" name="technical_skills" value="{{ skill }}" /> {{ skill }}</label>
+        {% endfor %}
+      </div>
+      <div class="small-note">Selected: <span id="tech-count">0</span></div>
+      <div class="error-text" id="error-technical"></div>
+    </div>
+    <div class="card" style="margin-top: 16px;">
+      <h3>Soft Skills</h3>
+      <div class="small-note">Select at least one soft skill (max 8).</div>
+      <div class="form-row single">
+        {% for skill in ['Communication','Teamwork','Problem Solving','Leadership','Time Management','Adaptability','Attention to Detail','Critical Thinking'] %}
+          <label><input type="checkbox" name="soft_skills" value="{{ skill }}" /> {{ skill }}</label>
+        {% endfor %}
+      </div>
+      <div class="small-note">Selected: <span id="soft-count">0</span></div>
+      <div class="error-text" id="error-soft"></div>
+    </div>
+    <div class="card" style="margin-top: 16px;">
+      <h3>Internship Interests</h3>
+      <div class="form-row single">
+        {% for option in ['Full-Stack Development','Frontend Development','Backend Development','Data Science','DevOps / Cloud','Machine Learning','Quality Assurance','Mobile Development','Other'] %}
+          <label><input type="radio" name="interest" value="{{ option }}" /> {{ option }}</label>
+        {% endfor %}
+      </div>
+      <div class="error-text" id="error-interest"></div>
+    </div>
+    <div class="card" style="margin-top: 16px;">
+      <h3>Availability</h3>
+      <div class="form-row single">
+        {% for option in ['Summer 2025 (June–August)','Fall 2025 (September–November)','Spring 2026 (January–April)','Flexible (any semester)'] %}
+          <label><input type="radio" name="availability" value="{{ option }}" /> {{ option }}</label>
+        {% endfor %}
+      </div>
+      <div class="error-text" id="error-availability"></div>
+    </div>
+    <div class="card" style="margin-top: 16px;">
+      <h3>Additional Notes</h3>
+      <textarea id="additional_notes" maxlength="300" placeholder="Any additional information you'd like us to know?"></textarea>
+      <div class="small-note" id="notes-count">0/300</div>
+    </div>
+    <div class="button-row">
+      <button type="button" class="secondary" onclick="prevPage(4)">Back</button>
+      <button type="button" class="btn" id="next-button" onclick="submitApplication()">Submit</button>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card">
+    <h2>Step 1 of 4: Personal Information</h2>
+    <div class="form-row">
+      <div>
+        <label for="full_name">Full Name *</label>
+        <input id="full_name" name="full_name" type="text" placeholder="John Doe" maxlength="100" onblur="validatePage1()" />
+        <div class="small-note" id="name-count">0/100</div>
+        <div class="error-text" id="error-name"></div>
+      </div>
+      <div>
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" placeholder="john@example.com" onblur="validatePage1()" />
+        <div class="error-text" id="error-email"></div>
+      </div>
+      <div>
+        <label for="phone">Phone Number *</label>
+        <input id="phone" name="phone" type="tel" placeholder="+1 (234) 567-8900" onblur="validatePage1()" />
+        <div class="error-text" id="error-phone"></div>
+      </div>
+      <div>
+        <label for="university">University *</label>
+        <select id="university" name="university" onchange="validatePage1()">
+          <option value="">Select university</option>
+          <option>State University</option>
+          <option>Tech Institute</option>
+          <option>Liberal Arts College</option>
+          <option>Other</option>
+        </select>
+        <div class="error-text" id="error-university"></div>
+      </div>
+      <div>
+        <label for="major">Major/Degree *</label>
+        <input id="major" name="major" type="text" placeholder="Computer Science" onblur="validatePage1()" />
+        <div class="error-text" id="error-major"></div>
+      </div>
+      <div>
+        <label for="graduation_date">Expected Graduation *</label>
+        <input id="graduation_date" name="graduation_date" type="date" onchange="validatePage1()" />
+        <div class="error-text" id="error-graduation"></div>
+      </div>
+      <div>
+        <label for="resume">Resume Upload *</label>
+        <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" />
+        <div class="small-note" id="resume-name">No file chosen</div>
+        <button type="button" class="secondary" onclick="removeResume()">Remove</button>
+        <div class="error-text" id="error-resume"></div>
+      </div>
+    </div>
+    <div class="button-row">
+      <button type="button" class="btn" id="next-button" disabled onclick="nextPage(1)">Next</button>
+    </div>
+  </div>
+{% endblock %}
