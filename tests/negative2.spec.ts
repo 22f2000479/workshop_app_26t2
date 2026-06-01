@@ -1,0 +1,40 @@
+import { test, expect } from '@playwright/test';
+
+test('Negative Test 2 - Skill Selection Boundary Validation', async ({ page }) => {
+  await page.goto('http://localhost:5000/page/1');
+  await page.getByRole('textbox', { name: 'Full Name *' }).click();
+  await page.getByRole('textbox', { name: 'Full Name *' }).fill('Raunak S');
+  await page.getByRole('textbox', { name: 'Full Name *' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Email *' }).fill('raun@example.com');
+  await page.getByRole('textbox', { name: 'Email *' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Phone Number *' }).fill('+91 9875363834');
+  await page.getByRole('textbox', { name: 'Phone Number *' }).press('Tab');
+  await page.getByLabel('University *').selectOption('State University');
+  await page.getByRole('textbox', { name: 'Major/Degree *' }).click();
+  await page.getByRole('textbox', { name: 'Major/Degree *' }).fill('Computer Science');
+  await page.getByRole('textbox', { name: 'Expected Graduation *' }).click();
+  await page.getByRole('textbox', { name: 'Expected Graduation *' }).fill('2027-12-04');
+  await page.getByRole('button', { name: 'Resume Upload *' }).click();
+  await page.getByRole('button', { name: 'Resume Upload *' })
+    .setInputFiles('Rahul_S_RS_Design_Freelancer_Resume.pdf');
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('textbox', { name: 'Course Name *' }).click();
+  await page.getByRole('textbox', { name: 'Course Name *' }).fill('Data Structures');
+  await page.getByRole('textbox', { name: 'Course Code' }).fill('CS 301');
+  await page.getByLabel('Grade Obtained *').selectOption('A');
+  await page.getByLabel('Semester/Year').selectOption('Spring 2025');
+  await page.getByRole('button', { name: 'Add Course' }).click();
+  await expect(page.getByText('Data Structures')).toBeVisible();
+  await page.getByRole('textbox', { name: 'Course Name *' }).fill('Machine Learning');
+  await page.getByRole('textbox', { name: 'Course Code' }).fill('CS 302');
+  await page.getByLabel('Grade Obtained *').selectOption('A-');
+  await page.getByLabel('Semester/Year').selectOption('Fall 2025');
+  await page.getByRole('button', { name: 'Add Course' }).click();
+  await expect(page.getByText('Machine Learning')).toBeVisible();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  const errorMsg = page.getByText(/select at least one technical skill/i);
+  await expect(errorMsg).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Submit' })).toBeDisabled();
+});
